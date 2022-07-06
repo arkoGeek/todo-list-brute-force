@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = () => {
+        document.getElementById("add").addEventListener("click", (e) => {
+          let txt = document.getElementById("input-txt").value;
+          document.getElementById("input-txt").value = "";
+          console.log(txt);
+          if(txt !== ""){
+            let li = document.createElement("li");
+            let div = document.createElement("div");
+            let h3 = document.createElement("h3");
+            let taskNode = document.createTextNode(txt);
+            h3.appendChild(taskNode);
+            let btn = document.createElement("button");
+            btn.setAttribute("value", "NO");
+            btn.innerHTML = "REMOVE";
+            btn.style.height = "1.5em";
+            btn.style.border = "none";
+            btn.style.color = "white";
+            btn.style.background = "red";
+            btn.setAttribute("id", "remove");
+            btn.addEventListener('click', function(e) {
+                li.parentNode.removeChild(li);
+            });
+            div.appendChild(h3);
+            div.appendChild(btn);
+            div.style.display = "flex";
+            div.style.justifyContent = "space-evenly";
+            div.style.alignItems = "center";
+            li.appendChild(div);
+            document.getElementById("list").appendChild(li);
+          }
+        });
+        document.getElementById("input-txt").value = "";
+      };
+    </script>
+  </head>
+  <body>
+    <input type="text" id="input-txt" />
+    <button id="add">Add Task</button>
+    <ul id="list" style="list-style: none;"></ul>
+  </body>
+</html>
